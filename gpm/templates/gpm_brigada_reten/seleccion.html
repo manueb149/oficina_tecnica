@@ -1,0 +1,43 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block extralink %}
+{% endblock extralink %}
+
+{% block titulo %}
+    Selección Brigada Retén
+{% endblock titulo %}
+
+{% block titulo_page %}
+    <h1 class="h3 mb-0 text-gray-800">Seleccion Brigada de Retén C&P</h1>
+{% endblock titulo_page %}
+
+{% block page_content %}
+    {% if empleados %}
+        {% for empleado in empleados %}
+            <h6>{{ empleado.nombres }} {{ empleado.apellidos }}</h6>
+        {% endfor %}
+    {% endif %}
+    <div class="py-2"></div>
+        <a href="{% static 'download/brigada_reten.xlsx' %}" class="btn btn-primary dump">Descargar Excel</a>
+        {% comment %} <button id="dl" type="button" class="btn btn-primary">Descargar</button> {% endcomment %}
+    <div class="py-4"></div>
+{% endblock page_content %}
+
+{% block extrajs %}
+    {% comment %} <script>
+        $('#dl').click(function(){
+            $.ajax({
+                type: 'GET',
+                url: '/brigada_reten/brigada_semanal/seleccion/descarga',
+                //data: {
+                //    data: 'OK' 
+                //},
+                success: function(){
+                    // alert("Datos Seleccionados");
+                    // window.location.href = '/brigada_reten/brigada_semanal/seleccion/';
+                },
+            });
+        }); {% endcomment %}
+    </script>
+{% endblock extrajs %}

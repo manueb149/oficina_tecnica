@@ -1,0 +1,56 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block extralink %}
+     <link href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+{% endblock extralink %}
+
+{% block titulo %}
+    Listado de Personal
+{% endblock titulo %}
+
+{% block titulo_page %}
+    <h1 class="h3 mb-0 text-gray-800">Listado de Personal C&P</h1>
+{% endblock titulo_page %}
+
+{% block page_content %}
+        <div class="card shadow mb-4">
+            <div class="card-header">
+              {% comment %} <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6> {% endcomment %}
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered text-gray-800" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Carnet</th>
+                                <th>Nombres</th>
+                                <th>Apellidos</th>
+                                <th>Area</th>
+                                <th>Cargo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% if empleados %}
+                            {% for empleado in empleados %}
+                                <tr>
+                                <td>{{ empleado.no_empleado }}</td>
+                                <td>{{ empleado.nombres }}</td>
+                                <td>{{ empleado.apellidos }}</td>
+                                <td>{{ empleado.area }}</td>
+                                <td>{{ empleado.cargo }}</td>
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+{% endblock page_content %}
+
+{% block extrajs %}
+    <script src="{% static 'vendor/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'js/demo/datatables-demo.js' %}"></script>
+{% endblock extrajs %}
